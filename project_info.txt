@@ -1,0 +1,16 @@
+Project 1: Airplane Reservation System
+
+Tools used:
+Netbeans IDE
+MySQL
+
+Programming Language:
+JAVA
+
+Brief about JAVA files:
+1) Airplane.java - Implements java-sql connection and runs queries as requested
+2) Airplane_GUI.java - Implements GUI interface for the user to see Airplane Resercation System
+3) JFrame_flight_no.java - Shows result of mysql query in a seperate frame
+
+Other Files:
+1) bxk131030_db.sql - Contains all queries used for creating database and tables
