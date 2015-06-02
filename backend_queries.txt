@@ -1,0 +1,20 @@
+1) Select flight_number, Weekdays from flight where Departure_code = 'PHX' and Arrival_code = 'STL';
+
+ Select F1.flight_number, F2.flight_number, F1.Weekdays, F1.Departure_airport_code, F1.Arrival_airport_code, F2.Arrival_airport_code, F2.Departure_airport_code from flight F1, flight F2 where F1.Departure_airport_code = 'PHX' and F2.Arrival_airport_code = 'STL' and F1. Arrival_airport_code = F2.Departure_airport_code and F1.Weekdays=F2.Weekdays and F1.Weekdays='Mon_Wed_Thu_Fri';
+ 
+ 2)
+ 
+Select F1.flight_number, F2.flight_number, F3.flight_number, F1.Weekdays, F1.Departure_airport_code, F1.Arrival_airport_code, F2.Arrival_airport_code, F3.Arrival_airport_code 
+from flight F1, flight F2, flight F3 
+where F1.Departure_airport_code = 'PHX' and F3.Arrival_airport_code = 'STL' and F1. Arrival_airport_code = F2.Departure_airport_code and F1.Departure_airport_code!=F2.Arrival_airport_code and F2.Arrival_airport_code=F3.Departure_airport_code and F2.Departure_Airport_code!=F3.Arrival_airport_code and F1.Weekdays=F2.Weekdays=F3.Weekdays and F2.Scheduled_departure_time>F1.Scheduled_arrival_time and F3.Scheduled_departure_time>F2.Scheduled_arrival_time and TIMEDIFF(F2.Scheduled_departure_time, F1.Scheduled_arrival_time) > '02:00:00' and TIMEDIFF(F3.Scheduled_departure_time, F2.Scheduled_arrival_time) < '02:00:00';
+
+
+Select F1.flight_number, F2.flight_number, F3.flight_number, F1.Weekdays, F2.Weekdays, F3.Weekdays "
+                                + "F1.Departure_airport_code, F1.Arrival_airport_code, F2.Arrival_airport_code, F3.Departure_airport_code, F3.Arrival_airport_code " 
+                                + "from flight F1, flight F2, flight F3 " 
+                                + "where F1.Departure_airport_code = '" +  input1 + "' and F3.Arrival_airport_code = '" + input2 + "' and "
+                                + "F1. Arrival_airport_code = F2.Departure_airport_code and F1.Departure_airport_code!=F2.Arrival_airport_code and "
+                                + "F2.Departure_airport_code!=F3.Arrival_airport_code and F2.Arrival_airport_code=F3.Departure_airport_code"
+                                + "F2.Scheduled_departure_time>F1.Scheduled_arrival_time and F3.Scheduled_departure_time>F2.Scheduled_arrival_time and "
+                                + "F1.Weekdays=F2.Weekdays and F2.Weekdays=F3.Weekdays"
+                                + "TIMEDIFF(F2.Scheduled_departure_time, F1.Scheduled_arrival_time) > '01:00:00' and TIMEDIFF(F3.Scheduled_departure_time, F2.Scheduled_arrival_time) > '01:00:00';");

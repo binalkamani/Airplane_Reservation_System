@@ -1,0 +1,58 @@
+select F.Flight_number, A.Total_number_of_seats, F.Number_of_Available_seats, count(*) 
+from Airplane A, Flight_instance F , Seat_reservation S
+where F.Flight_number=S.Flight_number and A.Airplane_id=F.Airplane_id
+GROUP BY S.flight_number;
+
+USE CASE 2: (Available Seats check and update each time there's a chaneg in database	)
+
+set1
+select A.Total_number_of_seats - count(*) 
+from Airplane A, Flight_instance F , Seat_reservation S
+where F.Flight_number=S.Flight_number and A.Airplane_id=F.Airplane_id
+GROUP BY S.flight_number;
+
+set2
+Select Number_of_Available_seats
+from Flight_instance F , Seat_reservation S
+where F.Flight_number=S.Flight_number
+GROUP BY S.flight_number;
+
+set3
+Select F.flight_number
+from Flight_instance F , Seat_reservation S
+where F.Flight_number=S.Flight_number
+GROUP BY S.flight_number;
+
+
+if compare and > 0 ======> Perfect
+Else update flight_instance set Number_of_available_seats=set1 where flight_number=set3;
+
+
+USE CASE 1: (One Stop Flight)
+
+set1:
+Arrival time of all such flights F1
+
+set2:
+Departure time of all such flights F2	
+
+set3:
+Difference of time > 01:00:00
+display set4 which has flight number of both, time of dept, time of arrival, weekdays, Stop name
+
+
+Select F1.flight_number, F2.flight_number, F1.Weekdays, F2.Arrival_airport_code AS STOP, F1.Scheduled_departure_time, F2.Scheduled_arrival_time from flight F1, flight F2 where F1.Departure_airport_code = 'input1' and F2.Arrival_airport_code = 'input2' and F1. Arrival_airport_code = F2.Departure_airport_code and F1.Weekdays=F2.Weekdays and F1.Weekdays='Mon_Wed_Thu_Fri' and TIMEDIFF(F2.Scheduled_departure_time, F1.Scheduled_arrival_time) > '01:00:00';
+
+Use Case 4 A:
+
+SELECT S.Flight_Number, S.Date, S.Seat_number, F.Departure_time, F.Arrival_time
+FROM Flight_Instance F, Seat_Reservation S
+WHERE S.Flight_number=F.Flight_number AND F.Date=S.Date AND Customer_name='Adam Howard';
+
+USE CASE 4 B:
+
+SELECT Customer_name
+FROM Seat_Reservation
+WHERE Flight_number = 'input1';
+
+
